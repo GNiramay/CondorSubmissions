@@ -4,3 +4,4 @@ mkdir StdOut
 mkdir StdErr
 mkdir Log
 mkdir ConfFiles
+mkdir FilePaths
