@@ -1,0 +1,14 @@
+test_signal.txt 0 5 --sample signal
+test_signal.txt 5 5 --sample signal
+test_signal.txt 10 5 --sample signal
+test_signal.txt 15 5 --sample signal
+test_signal.txt 20 5 --sample signal
+test_signal.txt 25 5 --sample signal
+test_signal.txt 30 5 --sample signal
+test_signal.txt 35 5 --sample signal
+test_bkg.txt 0 10 --sample bkg
+test_bkg.txt 10 10 --sample bkg
+test_bkg.txt 20 10 --sample bkg
+test_bkg.txt 30 10 --sample bkg
+test_data.txt 0 20 --sample data --lumi 59.8
+test_data.txt 20 20 --sample data --lumi 59.8

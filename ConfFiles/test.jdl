@@ -1,0 +1,14 @@
+batch_name = test
+JobTag = $(batch_name)_$(Cluster)_job$(ProcId)
+universe = vanilla
+Executable = 
+WhenToTransferOutput = ON_EXIT
+request_cpus = 1
+# request_memory = 5000
+Output = StdOut/$(JobTag).stdout
+Error = StdErr/$(JobTag).stderr
+Log = Log/$(JobTag).log
+Transfer_Input_Files = FilePaths/test_signal.txt , FilePaths/test_bkg.txt , FilePaths/test_data.txt
+
+Arguments = $(AnaScript).py --nthreads $(request_cpus) $(line) -e $(Run2Lumi)
+Queue Arguments from JobInfo/test.txt
