@@ -10,7 +10,7 @@ SAMPLES = [
 JOBTXT = "test.txt"
 CondConfig = "test.jdl"
 BatchName = 'test'
-Exec = ''
+Exec = 'Exec/test.sh'
 TransferFiles = ''
 
 ##################
