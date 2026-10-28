@@ -1,6 +1,6 @@
 
 ################## USER DEFINED
-# Formant: <text file storing root file paths> <no. of jobs to submit> <analysis script arguments>
+# Formant: <text file storing root file paths> <no. of files to process per job> <analysis script arguments>
 SAMPLES = [
     {"filelist": "FilePaths/test_signal.txt", "nfiles": 5,  "args": "--sample signal"},
     {"filelist": "FilePaths/test_bkg.txt",    "nfiles": 10, "args": "--sample bkg"},
