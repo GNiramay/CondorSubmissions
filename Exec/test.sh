@@ -1,5 +1,4 @@
 #!/bin/bash
 echo Input arguments: $*
-read list start n args <<< "$(sed -n "$(($1 + 1))p" jobs.txt)"
-files=$(sed -n "${start},$((start + n - 1))p" $list)
-echo python3 analysis.py $args $files
+list=$1 start=$2 n=$3; shift 3
+echo python3 analysis.py "$@" $(sed -n "$((start+1)),$((start+n))p" $list)
