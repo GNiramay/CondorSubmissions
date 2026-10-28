@@ -1,7 +1,7 @@
 batch_name = test
 JobTag = $(batch_name)_$(Cluster)_job$(ProcId)
 universe = vanilla
-Executable = 
+Executable = Exec/test.sh
 WhenToTransferOutput = ON_EXIT
 request_cpus = 1
 # request_memory = 5000
