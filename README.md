@@ -22,6 +22,19 @@ condor_Submit ConfFiles/test.jdl
 	4. Line `35` onwards is a code to create the condor config file. This is also a place to explore.
 2. `Exec/test.sh`: An example executable that shows how to execute a typical job. It passes the specified arguments to the analysis script along with all the root files that need to be processed.
 3. `CleanIt.sh`: Deletes condor output, error, log files.
+4. `RunLocally.py`: Runs a single job of a submission on the local machine, without going through condor. See below.
+
+## Run a job locally
+Before submitting a cluster, or after one of its jobs lands on hold, run a single job on the machine you are sitting on:
+```bash
+python3 RunLocally.py ConfFiles/test.jdl --list   # every ProcId and the arguments it gets
+python3 RunLocally.py ConfFiles/test.jdl 3        # run job 3
+```
+The script reads the condor config file the way `condor_submit` does: it expands the `$(...)` macros, takes the line of `JobInfo/*.txt` belonging to the given ProcId (`0` is the first line), and works out the executable, the arguments and `Transfer_Input_Files`. It copies those files into `LocalTrials/<config>.proc<ProcId>/` under their basenames — the flat layout a condor node sees, which is why the arguments say `test_signal.txt` and not `FilePaths/test_signal.txt` — and runs the executable in there. The output goes to the terminal and to `LocalTrials/<config>.proc<ProcId>.out`, and the script exits with the job's exit code.
+
+A held job id maps straight onto a ProcId: `86451496.4` is ProcId `4`, so `python3 RunLocally.py ConfFiles/<that config>.jdl 4` reproduces that job and lets it fail in front of you.
+
+Other options: `-n` only sets the folder up and prints the command, `--link` symlinks the input files instead of copying them (handy when they are large), `--keep` reuses an existing folder, `-d` puts the trials somewhere other than `LocalTrials`, `--arg` appends an extra argument. Run it from the same directory as `condor_submit`, and set the GRID proxy and CMSSW up first — the job inherits the shell it is launched from. Inputs like `root://...` are reported rather than downloaded.
 
 ## Ideal workflow
 1. Store the root file paths in new files in the folder `FilePaths`
